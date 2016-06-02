@@ -7,15 +7,26 @@ var gulp = require('gulp'),
   connect = require('gulp-connect'),
   del = require('del');
 
-//Scripts
+//scripts
 gulp.task('scripts', function() {
   return gulp.src('app/**/*.js')
       .pipe(concat('bundle.js'))
       .pipe(gulp.dest('dist'))
       .pipe(uglify())
       .pipe(gulp.dest('dist'))
-      .pipe(notify({message: 'Scripts task complete'}))
+      .pipe(notify({message: 'Scripts task complete.'}))
       .pipe(connect.reload());
+});
+
+//css
+gulp.task('styles', function() {
+  return gulp.src(['bower_components/material-design-lite/material.min.css' ,'./css/*.css'])
+    .pipe(concat('styles.css'))
+    .pipe(gulp.dest('dist'))
+    .pipe(minifyCss())
+    .pipe(gulp.dest('dist'))
+    .pipe(notify({message: 'Styles task complete.'}))
+    .pipe(connect.reload());
 });
 
 gulp.task('usemin', function() {
@@ -34,13 +45,14 @@ gulp.task('clean', function() {
 
 gulp.task('watch', ['connect'], function() {
     gulp.watch('./app/**/*.js', ['scripts']);
+    gulp.watch('./css/*.css', ['styles']);
 });
 
 gulp.task('connect', function() {
   connect.server();
 });
 
-gulp.task('default', ['clean', 'connect'], function() {
+gulp.task('default', ['clean'], function() {
   //gulp.start('scripts');
   gulp.start('usemin');
 });

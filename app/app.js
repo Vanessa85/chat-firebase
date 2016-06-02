@@ -11,6 +11,10 @@
       .when('/', {
         templateUrl: 'app/views/home.html',
         controller: 'HomeController as vm'
+      })
+      .when('/login', {
+        templateUrl: 'app/views/login.html',
+        controller: 'LoginController as vm'
       });
   }
 

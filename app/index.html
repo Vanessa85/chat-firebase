@@ -4,22 +4,41 @@
     <meta charset="utf-8">
     <title>Chat using AngularJS and Firebase</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- build:css dist/style.css -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <!-- build:css dist/styles.css -->
     <link rel="stylesheet" href="../bower_components/material-design-lite/material.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <!-- endbuild -->
   </head>
   <body>
-
-    <div ng-view></div>
-
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">Chat with Firebase</span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation. We hide it in small screens. -->
+          <nav class="mdl-navigation mdl-layout--large-screen-only">
+            <a class="mdl-navigation__link" href="#">Link</a>
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__content">
+        <div class="page-content" ng-view></div>
+      </div>
+    </div>
 
     <!-- build:vendorsjs dist/vendors.js -->
-    <script src="../bower_components/angular/angular.min.js"></script>
-    <script src="../bower_components/angular-route/angular-route.min.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/material-design-lite/material.js" charset="utf-8"></script>
     <!-- endbuild -->
     <!-- build:js dist/bundle.js -->
     <script src="app.js"></script>
     <script src="controllers/home.controller.js"></script>
+    <script src="controllers/login.controller.js"></script>
     <!-- endbuild -->
   </body>
 </html>
