@@ -10,9 +10,8 @@
     $routeProvider
       .when('/', {
         templateUrl: 'app/views/home.html',
-        controller: 'HomeController'
+        controller: 'HomeController as vm'
       });
   }
-
 
 })();

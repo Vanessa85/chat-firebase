@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appChat">
+  <head>
+    <meta charset="utf-8">
+    <title>Chat using AngularJS and Firebase</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- build:css dist/style.css -->
+    <link rel="stylesheet" href="../bower_components/material-design-lite/material.min.css">
+    <!-- endbuild -->
+  </head>
+  <body>
+
+    <div ng-view></div>
+
+
+    <!-- build:vendorsjs dist/vendors.js -->
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../bower_components/angular-route/angular-route.min.js"></script>
+    <!-- endbuild -->
+    <!-- build:js dist/bundle.js -->
+    <script src="app.js"></script>
+    <script src="controllers/home.controller.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>
