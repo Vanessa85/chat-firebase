@@ -1,21 +1,23 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular
-    .module('appChat', ['ngRoute'])
+    .module('appChat', ['ui.router'])
     .config(config);
 
-  config.$inject = ['$routeProvider'];
-  function config($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'app/views/home.html',
-        controller: 'HomeController as vm'
+  config.$inject = ['$stateProvider'];
+  function config($stateProvider) {
+    $stateProvider
+      .state({
+        name: 'home',
+        url: '/',
+        template: '<h1>Hello World</h1>'
       })
-      .when('/login', {
-        templateUrl: 'app/views/login.html',
-        controller: 'LoginController as vm'
+      .state({
+        name: 'login',
+        url: '/login',
+        component: 'login'
       });
   }
 
-})();
+})(window.angular);
