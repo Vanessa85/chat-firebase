@@ -3,10 +3,11 @@
 
   angular
     .module('appChat', ['ui.router'])
-    .config(config);
+    .config(config)
+    .run(run);
 
-  config.$inject = ['$stateProvider'];
-  function config($stateProvider) {
+  config.$inject = ['$stateProvider', '$urlRouterProvider'];
+  function config($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state({
         name: 'home',
@@ -18,6 +19,18 @@
         url: '/login',
         component: 'login'
       });
+
+      $urlRouterProvider.otherwise('/');
+  }
+
+  run.$inject = ['$transitions'];
+  function run($transitions) {
+    $transitions.onStart({ to: 'home'}, function(trans) {
+      var auth = trans.injector().get('auth');
+      if (!auth.isLoggedIn()) {
+        return trans.router.stateService.target('login');
+      }
+    });
   }
 
 })(window.angular);
