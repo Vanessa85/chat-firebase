@@ -5,13 +5,30 @@
         controller: LoginCtrl
     };
 
-    function LoginCtrl() {
+    LoginCtrl.$inject = ['$state', 'firebaseApp'];
+    function LoginCtrl($state, firebaseApp) {
         var vm = this;
-        vm.name = "vanessa";
+        vm.loginFB = loginFB;
+        vm.loginTW = loginTW;
+
+
+        //////////
+
+        function loginFB() {
+          firebaseApp.authFB().then(function() {
+            $state.go('home');
+          }).catch(function(err) {
+            console.log('weeor', err);
+          });
+        }
+
+        function loginTW() {
+          $state.go('home');
+        }
+
     }
 
 
-    LoginCtrl.$inject = [];
 
     angular
         .module('appChat')

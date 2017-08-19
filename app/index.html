@@ -13,20 +13,7 @@
   </head>
   <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      <header class="mdl-layout__header">
-        <div class="mdl-layout__header-row">
-          <!-- Title -->
-          <span class="mdl-layout-title">
-            <a ui-sref="home">Chat with Firebase</a>
-          </span>
-          <!-- Add spacer, to align navigation to the right -->
-          <div class="mdl-layout-spacer"></div>
-          <!-- Navigation. We hide it in small screens. -->
-          <nav class="mdl-navigation mdl-layout--large-screen-only">
-            <a class="mdl-navigation__link" ui-sref="login">Login</a>
-          </nav>
-        </div>
-      </header>
+      <app-header></app-header>
       <div class="mdl-layout__content">
         <div class="page-content">
             <ui-view></ui-view>
@@ -38,9 +25,12 @@
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="../bower_components/material-design-lite/material.js" charset="utf-8"></script>/
+    <script src="../bower_components/firebase/firebase.js"></script>
     <!-- endbuild -->
     <!-- build:js dist/bundle.js -->
     <script src="app.js"></script>
+    <script src="components/header/header.js"></script>
+    <script src="components/home/home.js"></script>
     <script src="components/login/login.js"></script>
     <script src="app.service.js"></script>
     <!-- endbuild -->

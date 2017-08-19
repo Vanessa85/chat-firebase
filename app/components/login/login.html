@@ -11,10 +11,14 @@
                     <a href="https://github.com/firebase/angularfire#documentation">AngularFire</a>
                 </div>
                 <div class="mdl-card__actions">
-                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+                    <button
+                      class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+                      ng-click="$ctrl.loginFB($event)">
                         Facebook
                     </button>
-                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                    <button
+                      class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                      ng-click="$ctrl.loginTW($event)">
                         Twitter
                     </button>
                 </div>

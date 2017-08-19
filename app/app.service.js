@@ -1,21 +1,53 @@
-!function(angular) {
+!function(angular, firebase) {
   'use strict';
 
   angular
     .module('appChat')
-    .factory('auth', authFactory);
+    .provider('firebaseApp', firebaseAppProvider);
 
-  authFactory.$inject = [];
-  function authFactory() {
-    var auth = {
-      isLoggedIn: isLoggedIn,
-    };
-
-    function isLoggedIn() {
-      return false;
-    }
-
-    return auth;
+  function FirebaseApp(config) {
+    this.app = firebase.initializeApp(config);
   }
 
-}(window.angular);
+  FirebaseApp.prototype = {
+    get: function() {
+      return this.app;
+    },
+    authenticate: function() {
+      return new Promise(function(resolve, reject) {
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            resolve(user);
+          } else {
+            reject(new Error('no user'));
+          }
+        });
+      });
+    },
+    isAuthenticate: function() {
+      return firebase.auth().currentUser;
+    },
+    authFB: function() {
+      var provider = new firebase.auth.FacebookAuthProvider();
+      return firebase.auth().signInWithPopup(provider);
+    },
+    signOut: function() {
+      return firebase.auth().signOut();
+    }
+  };
+
+
+  firebaseAppProvider.$inject = [];
+  function firebaseAppProvider() {
+    var config = {};
+
+    this.setConfig = function(firebaseConfig) {
+      config = firebaseConfig;
+    };
+
+    this.$get = [function() {
+      return new FirebaseApp(config);
+    }];
+  }
+
+}(window.angular, window.firebase);

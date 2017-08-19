@@ -6,13 +6,16 @@
     .config(config)
     .run(run);
 
-  config.$inject = ['$stateProvider', '$urlRouterProvider'];
-  function config($stateProvider, $urlRouterProvider) {
+  config.$inject = ['$stateProvider', '$urlRouterProvider', 'firebaseAppProvider'];
+  function config($stateProvider, $urlRouterProvider, firebaseAppProvider) {
     $stateProvider
       .state({
         name: 'home',
         url: '/',
-        template: '<h1>Hello World</h1>'
+        component: 'home',
+        resolve: {
+
+        }
       })
       .state({
         name: 'login',
@@ -21,15 +24,23 @@
       });
 
       $urlRouterProvider.otherwise('/');
+
+      firebaseAppProvider.setConfig({
+        apiKey: "AIzaSyAbeli44uERTLMata4o8aUuVoag-Gs_E3E",
+        authDomain: "chatangular-b9163.firebaseapp.com",
+        databaseURL: "https://chatangular-b9163.firebaseio.com",
+        projectId: "chatangular-b9163",
+        storageBucket: "chatangular-b9163.appspot.com",
+        messagingSenderId: "995895250626"
+      });
   }
 
-  run.$inject = ['$transitions'];
-  function run($transitions) {
+  run.$inject = ['$transitions', 'firebaseApp'];
+  function run($transitions, firebaseApp) {
     $transitions.onStart({ to: 'home'}, function(trans) {
-      var auth = trans.injector().get('auth');
-      if (!auth.isLoggedIn()) {
+      return firebaseApp.authenticate().catch(function(/*err*/) {
         return trans.router.stateService.target('login');
-      }
+      });
     });
   }
 

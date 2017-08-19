@@ -1,0 +1,19 @@
+<header class="mdl-layout__header">
+  <div class="mdl-layout__header-row">
+    <!-- Title -->
+    <span class="mdl-layout-title">
+      <a ui-sref="home">Chat with Firebase</a>
+    </span>
+    <!-- Add spacer, to align navigation to the right -->
+    <div class="mdl-layout-spacer"></div>
+    <!-- Navigation. We hide it in small screens. -->
+    <nav class="mdl-navigation mdl-layout--large-screen-only">
+      <a class="mdl-navigation__link"
+        ui-sref="login"
+        ng-if="!ctrl.isLoggedIn()">Login</a>
+      <a class="mdl-navigation__link"
+        ng-click="ctrl.logout()"
+        ng-if="ctrl.isLoggedIn()">Logout</a>
+    </nav>
+  </div>
+</header>
