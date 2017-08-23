@@ -1,4 +1,4 @@
-!function(angular) {
+!function(angular, notie) {
   'use strict';
   var loginComponent = {
     templateUrl: 'app/components/login/login.html',
@@ -15,14 +15,24 @@
 
     function loginFB() {
       firebaseApp.authFB().then(function() {
+        showMessage('Welcome!, you are logged in', 'success');
         $state.go('home');
       }).catch(function(err) {
-        console.log('weeor', err);
+          showMessage(err.message, 'error');
       });
     }
 
     function loginTW() {
-      $state.go('home');
+      firebaseApp.authTW().then(function() {
+        showMessage('Welcome! you are logged in', 'success');
+        $state.go('home');
+      }).catch(function(err) {
+        showMessage(err.message, 'error');
+      });
+    }
+
+    function showMessage(message, type) {
+      notie.alert({ text: message, type: type });
     }
 
   }
@@ -31,4 +41,4 @@
     .module('appChat')
     .component('login', loginComponent);
 
-}(window.angular);
+}(window.angular, window.notie);

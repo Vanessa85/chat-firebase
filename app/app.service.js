@@ -31,6 +31,10 @@
         var provider = new firebase.auth.FacebookAuthProvider();
         return firebase.auth().signInWithPopup(provider);
       },
+      authTW: function() {
+        var provider = new firebase.auth.TwitterAuthProvider();
+        return firebase.auth().signInWithPopup(provider);
+      },
       signOut: function() {
         return firebase.auth().signOut();
       }
