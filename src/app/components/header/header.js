@@ -5,7 +5,7 @@
   function headerComponent() {
     return {
       restrict: 'E',
-      templateUrl: 'app/components/header/header.html',
+      templateUrl: '/app/components/header/header.html',
       replace: true,
       // scope: {},
       // bindToController: true,

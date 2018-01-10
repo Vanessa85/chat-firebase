@@ -1,58 +1,53 @@
-var gulp = require('gulp'),
+const path = require('path'),
+  gulp = require('gulp'),
+  browserSync = require('browser-sync').create(),
   uglify = require('gulp-uglify'),
-  minifyCss = require('gulp-clean-css'),
-  concat = require('gulp-concat'),
-  notify = require('gulp-notify'),
   usemin = require('gulp-usemin'),
-  connect = require('gulp-connect'),
   del = require('del');
 
-//scripts
-gulp.task('scripts', function() {
-  return gulp.src('app/**/*.js')
-      .pipe(concat('bundle.js'))
-      .pipe(gulp.dest('dist'))
-      .pipe(uglify())
-      .pipe(gulp.dest('dist'))
-      .pipe(notify({message: 'Scripts task complete.'}))
-      .pipe(connect.reload());
+const paths = {
+  src: path.resolve(__dirname, 'src'),
+  dist: path.resolve(__dirname, 'dist'),
+  srcJS: path.resolve(__dirname, 'src/app/**/*.js'),
+  srcCSS: path.resolve(__dirname, 'src/stylesheets/**/*.css'),
+  srcHtml: path.resolve(__dirname, 'src/**/*.html'),
+  distJS: path.resolve(__dirname, 'dist/js'),
+  indexHtml: path.resolve(__dirname, 'src/index.html'),
+};
+
+gulp.task('cleanup', () => del.sync(paths.dist));
+
+gulp.task('html', () => {
+  return gulp.src([paths.srcHtml, `!${paths.indexHtml}`])
+    .pipe(gulp.dest(paths.dist));
 });
 
-//css
-gulp.task('styles', function() {
-  return gulp.src(['bower_components/material-design-lite/material.min.css' ,'./css/*.css'])
-    .pipe(concat('styles.css'))
-    .pipe(gulp.dest('dist'))
-    .pipe(minifyCss())
-    .pipe(gulp.dest('dist'))
-    .pipe(notify({message: 'Styles task complete.'}))
-    .pipe(connect.reload());
+gulp.task('usemin', ['cleanup'], () => {
+  return gulp.src(paths.indexHtml)
+    .pipe(usemin({
+      path: './',
+      js: [uglify()],
+      vendor: [uglify()]
+    }))
+    .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('usemin', function() {
-  return gulp.src('./app/index.html')
-      .pipe(usemin({
-        css: [minifyCss()],
-        js: [uglify()],
-        vendorsjs: [uglify()]
-      }))
-      .pipe(gulp.dest('./'));
+gulp.task('server', () => {
+  browserSync.init({
+    port: 4000,
+    files: [paths.srcJS, paths.srcCSS],
+    server: {
+      baseDir: paths.src,
+      routes: {
+        '/': './'
+      }
+    }
+  });
 });
 
-gulp.task('clean', function() {
-  return del(['dist', './index.html']);
-});
-
-gulp.task('watch', ['connect'], function() {
-    gulp.watch('./app/**/*.js', ['scripts']);
-    gulp.watch('./css/*.css', ['styles']);
-});
-
-gulp.task('connect', function() {
-  connect.server();
-});
-
-gulp.task('default', ['clean'], function() {
-  //gulp.start('scripts');
+gulp.task('build', ['cleanup'], () => {
   gulp.start('usemin');
+  gulp.start('html');
 });
+
+gulp.task('default', ['server']);

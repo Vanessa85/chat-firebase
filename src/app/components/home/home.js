@@ -2,13 +2,13 @@
   'use strict';
 
   var homeComponent = {
-    templateUrl: 'app/components/home/home.html',
+    templateUrl: '/app/components/home/home.html',
     controller: homeCtrl
   };
 
   homeCtrl.$inject = [];
   function homeCtrl() {
-    
+
   }
 
   angular

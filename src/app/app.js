@@ -1,6 +1,5 @@
 (function(angular) {
   'use strict';
-
   angular
     .module('appChat', ['ui.router'])
     .config(config)

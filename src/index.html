@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appChat">
+  <head>
+    <meta charset="utf-8">
+    <title>Chat using AngularJS and Firebase</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <!-- build:css css/styles.css -->
+    <link rel="stylesheet" href="/vendor/material-design-lite/material.min.css">
+    <link rel="stylesheet" href="/vendor/notie/dist/notie.css">
+    <link rel="stylesheet" href="/src/stylesheets/styles.css">
+    <!-- endbuild -->
+  </head>
+  <body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <app-header></app-header>
+      <div class="mdl-layout__content">
+        <div class="page-content">
+          <ui-view></ui-view>
+        </div>
+      </div>
+    </div>
+
+    <!-- build:vendor js/vendor.js -->
+    <script src="/vendor/angular/angular.js"></script>
+    <script src="/vendor/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/vendor/material-design-lite/material.js"></script>
+    <script src="/vendor/firebase/firebase.js"></script>
+    <script src="/vendor/notie/dist/notie.js"></script>
+    <!-- endbuild -->
+    <!-- build:js js/app.js -->
+    <script src="/src/app/app.js"></script>
+    <script src="/src/app/components/header/header.js"></script>
+    <script src="/src/app/components/home/home.js"></script>
+    <script src="/src/app/components/login/login.js"></script>
+    <script src="/src/app/app.service.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>
