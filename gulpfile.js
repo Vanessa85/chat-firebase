@@ -22,7 +22,9 @@ gulp.task('cleanup', () => del.sync(paths.dist));
 
 gulp.task('sass', () => {
   return gulp.src(paths.srcSCSS)
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({
+      includePaths: ['vendor/']
+    }).on('error', sass.logError))
     .pipe(gulp.dest(paths.stylesheets));
 });
 
