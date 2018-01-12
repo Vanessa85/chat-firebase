@@ -14,7 +14,8 @@
     //////////
 
     function loginFB() {
-      firebaseApp.authFB().then(function() {
+      firebaseApp.authFB().then(function(result) {
+        console.log(result); //eslint-disable-line
         notie.success('Welcome! you are logged in');
         $state.go('home');
       }).catch(function(err) {

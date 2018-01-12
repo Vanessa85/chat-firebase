@@ -1,0 +1,32 @@
+.c-chat {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 100px);
+}
+
+.c-chat__body {
+  background: lighten($silver, 9%);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+.c-chat__content {
+  overflow-x: auto;
+}
+
+.c-chat__title {
+  font-weight: 400;
+  line-height: normal;
+  margin: 0 0 20px;
+}
+
+.c-chat__footer {
+  min-height: 5rem;
+}
+
+.c-chat__form {
+  display: flex;
+}

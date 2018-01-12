@@ -24,6 +24,9 @@
         });
       });
     },
+    getUser: function() {
+      return firebase.auth().currentUser.providerData[0];
+    },
     isAuthenticate: function() {
       return firebase.auth().currentUser;
     },
