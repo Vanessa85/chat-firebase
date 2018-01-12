@@ -1,12 +1,12 @@
-!function(angular, notie) {
+!function(angular) {
   'use strict';
   var loginComponent = {
     templateUrl: '/app/components/login/login.html',
     controller: LoginCtrl
   };
 
-  LoginCtrl.$inject = ['$state', 'firebaseApp'];
-  function LoginCtrl($state, firebaseApp) {
+  LoginCtrl.$inject = ['$state', 'firebaseApp', 'notie'];
+  function LoginCtrl($state, firebaseApp, notie) {
     var vm = this;
     vm.loginFB = loginFB;
     vm.loginTW = loginTW;
@@ -15,24 +15,20 @@
 
     function loginFB() {
       firebaseApp.authFB().then(function() {
-        showMessage('Welcome!, you are logged in', 'success');
+        notie.success('Welcome! you are logged in');
         $state.go('home');
       }).catch(function(err) {
-          showMessage(err.message, 'error');
+        notie.error(err.message);
       });
     }
 
     function loginTW() {
       firebaseApp.authTW().then(function() {
-        showMessage('Welcome! you are logged in', 'success');
+        notie.success('Welcome! you are logged in');
         $state.go('home');
       }).catch(function(err) {
-        showMessage(err.message, 'error');
+        notie.error(err.message);
       });
-    }
-
-    function showMessage(message, type) {
-      notie.alert({ text: message, type: type });
     }
 
   }
@@ -41,4 +37,4 @@
     .module('appChat')
     .component('login', loginComponent);
 
-}(window.angular, window.notie);
+}(window.angular);

@@ -44,7 +44,7 @@ gulp.task('usemin', ['cleanup'], () => {
 gulp.task('server', () => {
   browserSync.init({
     port: 4000,
-    files: [paths.srcJS, paths.srcCSS],
+    files: [paths.srcJS, paths.srcCSS, paths.srcHtml],
     server: {
       baseDir: paths.src,
       routes: {
