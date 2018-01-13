@@ -1,23 +1,14 @@
-<div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--4-col">
-    <div class="mdl-card mdl-card mdl-shadow--2dp" style="width:100%">
-      <div class="mdl-card__title">
-        <h2 class="mdl-card__title-text" ng-bind="$ctrl.user.displayName"></h2>
-      </div>
-      <div class="mdl-card__media">
-        <img ng-src="{{$ctrl.user.photoURL}}">
-      </div>
-      <div class="mdl-card__supporting-text" ng-bind="$ctrl.user.email">
-      </div>
-      <div class="mdl-card__actions mdl-card--border">
-        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-          Logout
-        </a>
+<div class="mw9 center ph3-ns">
+  <div class="cf ph2-ns">
+    <div class="fl w-100 w-25-ns w-35-m pa2">
+      <div class="tc">
+        <h2 class="f3 fw6 lh-copy" ng-bind="$ctrl.user.displayName"></h2>
+        <img class="" ng-src="{{$ctrl.user.photoURL}}">
+        <p ng-bind="$ctrl.user.email"></p>
       </div>
     </div>
-
-  </div>
-  <div class="mdl-cell mdl-cell--8-col">
-    <chat></chat>
+    <div class="fl w-100 w-75-ns w-65-m pv2">
+      <chat></chat>
+    </div>
   </div>
 </div>

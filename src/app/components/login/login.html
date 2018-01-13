@@ -1,28 +1,31 @@
-<div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--12-col">
-    <section class="mdl-demo mdl-grid mdl-grid--no-spacing section--center mdl-shadow--2dp">
-      <div class="mdl-demo__img mdl-cell mdl-cell--4-col">
+<section class="mw9 center pa4 pt5-ns ph7-l">
+  <div class="flex flex-wrap">
+    <div class="w-100 w-40-ns bg-gold  flex items-center justify-center">
+      <a href="https://firebase.google.com/" class="link">
         <img src="img/firebase.png" />
+      </a>
+    </div>
+    <div class="w-100 w-60-ns">
+      <div class="pv2 ph3">
+        <h4 class="f3 fw6 ma0">Login</h4>
+        <p class="gray">Chat demo with AngularJS and Firebase.</p>
+        <p class="gray">
+          Go to source code: <a href="https://github.com/Vanessa85/chat-firebase" class="link">Github</a>
+        </p>
       </div>
-      <div class="mdl-card mdl-cell mdl-cell--8-col">
-        <div class="mdl-card__supporting-text">
-          <h4>Login</h4>
-            Chat demo with AngularJS and Firebase.<br /> Documentation:
-            <a href="https://github.com/firebase/angularfire#documentation">AngularFire</a>
-        </div>
-        <div class="mdl-card__actions">
-          <button
-            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
-            ng-click="$ctrl.loginFB($event)">
-            Facebook
-          </button>
-          <button
-            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-            ng-click="$ctrl.loginTW($event)">
-            Twitter
-          </button>
-        </div>
-      </div>
-    </section>
+    </div>
   </div>
-</div>
+  <div class="cf mt2">
+    <button
+      class="f6 f5-l button-reset fl pv3 tc bg-animate bg-dark-blue hover-bg-navy white pointer w-50"
+      ng-click="$ctrl.loginFB($event)">
+      Facebook
+    </button>
+    <button
+      class="f6 f5-l button-reset fl pv3 tc bg-animate bg-blue hover-bg-navy white pointer w-50"
+      ng-click="$ctrl.loginTW($event)">
+      Twitter
+    </button>
+  </div>
+  </div>
+</section>
