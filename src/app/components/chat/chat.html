@@ -1,13 +1,23 @@
 <div class="c-chat">
-  <div class="c-chat__body tc bg-near-white mb3 pa3">
-    <h6 class="f6 mt0 mb3 fw6">Welcome!</h6>
+  <div class="c-chat__body bg-near-white mb3 pa3">
+    <h6 class="f6 mt0 mb3 fw6 tc">Welcome!</h6>
     <div class="c-chat__content">
+
+      <div ng-repeat="message in $ctrl.messages track by message.timestamp">
+        <span ng-bind="message.user + ':'" class="fw6 db"></span>
+        <span ng-bind="message.text"></span>
+      </div>
 
     </div>
   </div>
   <div class="c-chat__footer">
-    <form action="" class="cf">
-      <input type="text" class="f6 f5-l input-reset ba b--black-20 fl black-80 bg-white pa3 lh-solid w-100 w-75-m w-80-l" placeholder="Enter your message here">
+    <form action="" class="cf" ng-submit="$ctrl.send($event)">
+      <input
+        type="text"
+        class="f6 f5-l input-reset ba b--black-20 fl black-80 bg-white pa3 lh-solid w-100 w-75-m w-80-l"
+        ng-model="$ctrl.message"
+        placeholder="Enter your message here"
+        autofocus>
       <button type="submit" class="f6 f5-l button-reset fl pv3 tc bg-animate bg-blue hover-bg-navy white pointer w-100 w-25-m w-20-l">
         Send
       </button>

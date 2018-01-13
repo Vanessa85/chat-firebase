@@ -8,10 +8,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-}
-
-.c-chat__content {
-  overflow-x: auto;
+  overflow-y: auto;
 }
 
 .c-chat__footer {
